@@ -1219,6 +1219,38 @@ select {
 .ease-in {
   transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
 }
+.create-btn{
+
+    border-radius: 10px;
+    color: #ffffff;
+    margin: 5px;
+    padding: 5px;
+    background-color: #00ff84;
+}
+.save-form{
+    display: flex;
+    flex-direction: column;
+    width: 400px;
+    background-color: #1ef8ff;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+}
+.save-form label{
+    display: flex;
+    justify-content: space-between;
+    margin: 5px;
+}
+.save-form>div{
+    margin: 5px;
+    padding: 5px;
+    background-color: #565656;
+    color: #ffffff;
+    border-radius: 5px;
+}
+.send{
+    background-color: #2977ff;
+}
 .hover\:border-gray-300:hover {
   --tw-border-opacity: 1;
   border-color: rgb(209 213 219 / var(--tw-border-opacity));
@@ -1419,4 +1451,5 @@ select {
     padding-right: 2rem;
   }
 }
+
 
