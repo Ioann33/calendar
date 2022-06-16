@@ -17,4 +17,4 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/calendar', [\App\Http\Controllers\ApiController::class, 'create'])->name('save.event');
+Route::post('/calendar', [\App\Http\Controllers\ApiController::class, 'save'])->name('save.event');

@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
-    public function create(Request $request){
+    public function save(Request $request){
 
 
         $this->validate($request, [
@@ -17,6 +17,7 @@ class ApiController extends Controller
             'finishTime'=>'required',
             'title'=>'required',
         ]);
+
         $event = new Calendar();
         $event->date = $request->date;
         $event->start_at = $request->statTime;

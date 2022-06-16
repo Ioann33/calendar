@@ -16,8 +16,7 @@ saveBtn.onsubmit = function (e) {
     xhr.onreadystatechange = function(){
         if (xhr.readyState === 4){
             if (xhr.status ===200){
-                alert('article create');
-
+                alert('appoint event success');
             }
         }
     }
