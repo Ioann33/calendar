@@ -33,4 +33,17 @@
 .send{
     background-color: #2977ff;
 }
-
+.search-form{
+    width: 530px;
+    background-color: #1ef8ff;
+    margin: 10px;
+    padding: 15px;
+    border-radius: 10px;
+}
+.search-form>div{
+    margin: 5px;
+    padding: 5px;
+    background-color: #565656;
+    color: #ffffff;
+    border-radius: 5px;
+}

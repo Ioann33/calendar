@@ -7,7 +7,7 @@
                     <h2>All events</h2>
                 </div>
             </div>
-            <form class="search-form" name="searchEvent" method="post" action="{{ route('save.event') }}" style="">
+            <form class="search-form" name="searchEvent" method="get" action="/">
                 <div>Search events</div>
                 <label>From:
                     <input type="date" name="dateStart" required>
