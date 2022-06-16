@@ -18,3 +18,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::post('/calendar', [\App\Http\Controllers\ApiController::class, 'save'])->name('save.event');
+
+Route::get('/calendar/{first?}/{second?}', [\App\Http\Controllers\ApiController::class, 'get'])->name('get.events');

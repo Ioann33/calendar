@@ -1,0 +1,19 @@
+.iterable{
+    margin: 10px;
+    background-color: #daccff;
+
+    border-radius: 5px;
+    height: 100px;
+    display: flex;
+}
+.iterable label{
+    text-align: center;
+    padding-top: 10px;
+}
+.delete-btn{
+    border-radius: 10px;
+    color: #ffffff;
+    margin: 5px;
+    padding: 5px;
+    background-color: #ff505f;
+}

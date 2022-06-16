@@ -7,7 +7,7 @@
                     <h2>All events</h2>
                 </div>
             </div>
-            <form class="search-form" name="searchEvent" method="get" action="/">
+            <form class="search-form" name="searchEvent" method="get" action="{{ route('get.events') }}">
                 <div>Search events</div>
                 <label>From:
                     <input type="date" name="dateStart" required>
@@ -19,6 +19,7 @@
             </form>
         </div>
     </div>
+    <div id="content"></div>
     <script src="{{ asset('js/search.js') }}"></script>
 @endsection
 
