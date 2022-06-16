@@ -10,7 +10,6 @@ class ApiController extends Controller
 {
     public function save(Request $request){
 
-
         $this->validate($request, [
             'date'=>'required',
             'statTime'=>'required',

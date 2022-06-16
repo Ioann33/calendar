@@ -24,3 +24,4 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 
 Route::get('/create', [\App\Http\Controllers\CalendarController::class, 'create'])->middleware(['auth'])->name('create');
+Route::get('/show', [\App\Http\Controllers\CalendarController::class, 'all'])->middleware(['auth'])->name('show');
