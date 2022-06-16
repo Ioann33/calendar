@@ -29,5 +29,6 @@
             </form>
         </div>
     </div>
+    <script src="{{ asset('js/create.js') }}" defer></script>
 @endsection
 

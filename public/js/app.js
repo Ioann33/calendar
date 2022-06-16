@@ -4980,36 +4980,6 @@ __webpack_require__.r(__webpack_exports__);
 
 window.Alpine = alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"];
 alpinejs__WEBPACK_IMPORTED_MODULE_1__["default"].start();
-var saveForm = document.forms.createEvent;
-var searchForm = document.forms.searchEvent;
-console.log(searchForm);
-
-saveForm.onsubmit = function (e) {
-  var xhr = new XMLHttpRequest();
-
-  xhr.onreadystatechange = function () {
-    if (xhr.readyState === 4) {
-      if (xhr.status === 200) {
-        alert('appoint event success');
-      }
-    }
-  };
-
-  var method = this.method;
-  xhr.open(method, url);
-  var formData = new FormData(this);
-  xhr.send(formData);
-  e.preventDefault();
-};
-
-searchForm.onsubmit = function (e) {
-  // let url = this.action;
-  // console.log(url);
-  // let oneVal = this.dateStart.value
-  // console.log(oneVal);
-  alert('hello');
-  e.preventDefault();
-};
 
 /***/ }),
 
