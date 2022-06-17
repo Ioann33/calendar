@@ -21,5 +21,6 @@
     </div>
     <div id="content"></div>
     <script src="{{ asset('js/search.js') }}"></script>
+{{--    <script src="{{ asset('js/update.js') }}"></script>--}}
 @endsection
 

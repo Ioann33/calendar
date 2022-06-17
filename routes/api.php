@@ -20,3 +20,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('/calendar', [\App\Http\Controllers\ApiController::class, 'save'])->name('save.event');
 
 Route::get('/calendar/{first?}/{second?}', [\App\Http\Controllers\ApiController::class, 'get'])->name('get.events');
+
+Route::patch('/calendar/{id?}', [\App\Http\Controllers\ApiController::class, 'update'])->name('update.event');
+
+Route::delete('/calendar/{id?}', function ($id){
+    echo $id;
+});
