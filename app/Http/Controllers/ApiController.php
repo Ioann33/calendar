@@ -36,11 +36,20 @@ class ApiController extends Controller
         $event->save();
     }
 
-    public function update(){
-        echo 'hello update';
+    public function update(array $values, int $id){
+        $event = Calendar::findOrFail($id);
+        $event->date = $values[0];
+        $event->start_at = $values[1];
+        $event->finish_at = $values[2];
+        $event->title = $values[3];
+        $event->description = $values[4];
+        $event->save();
+
     }
 
     static public function delete($id){
-        echo $id;
+        $event = Calendar::findOrFail($id);
+        $event->delete();
+        echo true;
     }
 }

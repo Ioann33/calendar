@@ -15,5 +15,6 @@ saveForm.onsubmit = function (e) {
     xhr.open(method, url);
     let formData = new FormData(this);
     xhr.send(formData);
+    this.reset();
     e.preventDefault();
 }

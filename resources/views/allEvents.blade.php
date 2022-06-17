@@ -15,7 +15,7 @@
                 <label>To:
                     <input type="date" name="dateFinish" required>
                 </label>
-                <button class="create-btn send">search</button>
+                <button class="create-btn send" name="btn">search</button>
             </form>
         </div>
     </div>

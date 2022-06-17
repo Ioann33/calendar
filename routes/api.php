@@ -21,9 +21,15 @@ Route::post('/calendar', [\App\Http\Controllers\ApiController::class, 'save'])->
 
 Route::get('/calendar/{first?}/{second?}', [\App\Http\Controllers\ApiController::class, 'get'])->name('get.events');
 
-Route::patch('/calendar/{id?}', [\App\Http\Controllers\ApiController::class, 'update'])->name('update.event');
+Route::patch('/calendar/{id?}', function ($id, Request $request){
+    $update = new \App\Http\Controllers\ApiController();
+
+    $update->update($request->toArray(), $id);
+
+})->name('update.event');
 
 Route::delete('/calendar/{id?}', function ($id){
+    var_dump($id);
     $delete = new \App\Http\Controllers\ApiController();
     $delete->delete($id);
 });
