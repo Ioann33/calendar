@@ -8,7 +8,7 @@ async function deleteEvent(id){
             'Content-Type' : 'application/json',
         }
     });
-    const data = await res.json();
+    const data = await res;
     if (data){
         document.getElementById(`event${id}`).remove()
     }

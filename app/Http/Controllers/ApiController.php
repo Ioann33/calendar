@@ -40,7 +40,7 @@ class ApiController extends Controller
         echo 'hello update';
     }
 
-    public function delete(){
-
+    static public function delete($id){
+        echo $id;
     }
 }

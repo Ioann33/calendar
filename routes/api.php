@@ -24,5 +24,6 @@ Route::get('/calendar/{first?}/{second?}', [\App\Http\Controllers\ApiController:
 Route::patch('/calendar/{id?}', [\App\Http\Controllers\ApiController::class, 'update'])->name('update.event');
 
 Route::delete('/calendar/{id?}', function ($id){
-    echo $id;
+    $delete = new \App\Http\Controllers\ApiController();
+    $delete->delete($id);
 });
