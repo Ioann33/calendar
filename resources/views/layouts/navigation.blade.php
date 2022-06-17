@@ -8,7 +8,7 @@
                         <a href="{{ route('dashboard') }}">
                             <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                         </a>
-                        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
+                        <div class="" style="margin-left: 1050px">
                             <ul class="nav navbar-nav navbar-right" style="display: flex">
                                 <li style="margin: 5px"><a href="{{ route('login') }}">Login</a></li>
                                 <li style="margin: 5px"><a href="{{ route('register') }}">Register</a></li>

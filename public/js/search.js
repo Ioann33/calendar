@@ -1,5 +1,24 @@
 let searchForm = document.forms.searchEvent;
 
+function getTime(){
+    let now = new Date()
+    let utc = new Date()
+    utc.setHours(now.getHours()+3)
+    let now3 = utc.toLocaleTimeString();
+    return now3;
+}
+
+function getDate(){
+    let year = new Date().getFullYear();
+    let month = new Date().getMonth()+1;
+    if (month<10){
+        month = '0'+month;
+    }
+    let day = new Date().getDate();
+    return year+'-'+month+'-'+day;
+}
+
+
 // async function getAllEvents(){
 //     let first = searchForm.dateStart.value;
 //     let second = searchForm.dateFinish.value;
@@ -10,45 +29,75 @@ let searchForm = document.forms.searchEvent;
 
 async function deleteEvent(id){
 
-    const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
-        method: 'DELETE',
-        headers: {
-            'Content-Type' : 'application/json',
+    let right = true;
+
+    let values = document.querySelectorAll(`#event${id} input`);
+    if (getDate() === values[5].value){
+        if (getTime() < values[6].value){
+            right = true;
+        }else {
+            right = false;
         }
-    });
-    const data = await res;
-    if (data){
-        document.getElementById(`event${id}`).remove()
     }
+    if (right){
+        const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
+            method: 'DELETE',
+            headers: {
+                'Content-Type' : 'application/json',
+            }
+        });
+        const data = await res;
+        if (data){
+            document.getElementById(`event${id}`).remove();
+        }
+    }else {
+        alert('you cannot delete this events , to start left less thee hours ');
+    }
+
 
 }
 
 async function updateEvent(id) {
+    let right = true;
 
     let values = document.querySelectorAll(`#event${id} input`);
-    let resArr = [
-        values[0].value,
-        values[1].value,
-        values[2].value,
-        values[3].value,
-        values[4].value
-    ];
+    if (getDate() === values[5].value){
+        if (getTime() < values[6].value){
+            right = true;
+        }else {
+            right = false;
+        }
+    }
+    if (right){
+        let resArr = [
+            values[0].value,
+            values[1].value,
+            values[2].value,
+            values[3].value,
+            values[4].value
+        ];
 
 
-    const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
-        method: 'PATCH',
-        headers: {
-            'Content-Type' : 'application/json'
-        },
-        body: JSON.stringify(resArr),
-    });
+        const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
+            method: 'PATCH',
+            headers: {
+                'Content-Type' : 'application/json'
+            },
+            body: JSON.stringify(resArr),
+        });
 
-    const data = await res;
-    // if (data){
-    //     searchForm.onsubmit();
-    // }
+        const data = await res;
+        if (data){
+            alert('success');
+            searchForm.onsubmit();
+
+        }
 
 
+
+    }else{
+        alert('you cannot change this events , to start left less thee hours or event completed')
+    }
 
 }
 
@@ -74,6 +123,8 @@ function eventsToHtml(events){
                         <label>Description:
                             <input type="text" name="description" value="${events[key].description}">
                         </label>
+                        <input type="hidden" name="dateHidd" value="${events[key].date}">
+                        <input type="hidden" name="startHidd" value="${events[key].start_at}">
                         <button onclick="updateEvent(${events[key].id})" class="update-btn" name="create-btn" type="button" class="btn btn-info"><i class="fa fa-plus"></i> Update </button>
                         <button onclick="deleteEvent(${events[key].id})" class="delete-btn" name="delete-btn" type="button" class="btn btn-info"><i class="fa fa-trash"></i> Delete </button>
                         </div>

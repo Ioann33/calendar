@@ -6,7 +6,13 @@ saveForm.onsubmit = function (e) {
     xhr.onreadystatechange = function(){
         if (xhr.readyState === 4){
             if (xhr.status ===200){
-                alert('appoint event success');
+                let res = xhr.responseText;
+                if (res){
+                    alert(res);
+                }else {
+                    alert('appoint event success');
+                }
+
             }
         }
     }
