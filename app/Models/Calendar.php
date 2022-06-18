@@ -18,6 +18,10 @@ class Calendar extends Model
         'user_id',
     ];
 
+    /**
+     * related with User model
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user(){
         return $this->belongsTo(User::class);
     }

@@ -29,7 +29,6 @@ Route::middleware('auth_api')->patch('/calendar/{id?}', function ($id, Request $
 })->name('update.event');
 
 Route::middleware('auth_api')->delete('/calendar/{id?}', function ($id){
-    var_dump($id);
     $delete = new \App\Http\Controllers\ApiController();
     $delete->delete($id);
 });

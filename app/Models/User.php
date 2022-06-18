@@ -42,6 +42,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * related with Calendar model
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function calendars(){
         return $this->hasMany(Calendar::class);
     }

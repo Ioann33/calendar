@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ApiController extends Controller
 {
+    /**
+     * get all selected events
+     */
     public function get(){
         $first = $_GET['first'];
         $second = $_GET['second'];
@@ -17,6 +20,11 @@ class ApiController extends Controller
         Response::json($events);
 //        return $events;
     }
+
+    /**validate request and store new event
+     * @param Request $request
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function save(Request $request){
 
         $this->validate($request, [
@@ -55,6 +63,11 @@ class ApiController extends Controller
 
     }
 
+    /**
+     * update event by id
+     * @param array $values
+     * @param int $id
+     */
     public function update(array $values, int $id){
         $event = Calendar::findOrFail($id);
         $event->date = $values[0];
@@ -66,7 +79,11 @@ class ApiController extends Controller
 
     }
 
-    static public function delete($id){
+    /**
+     * delete event by id
+     * @param int $id
+     */
+    static public function delete(int $id){
         $event = Calendar::findOrFail($id);
         $event->delete();
         echo true;
