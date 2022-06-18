@@ -19,6 +19,7 @@ saveForm.onsubmit = function (e) {
     let method = this.method;
     let url = this.action;
     xhr.open(method, url);
+    xhr.setRequestHeader('Authorization', 'Bearer csdajk5hjcbe324jilndlwknj2bsdcs');
     let formData = new FormData(this);
     xhr.send(formData);
     this.reset();

@@ -17,18 +17,18 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::post('/calendar', [\App\Http\Controllers\ApiController::class, 'save'])->name('save.event');
+Route::middleware('auth_api')->post('/calendar', [\App\Http\Controllers\ApiController::class, 'save'])->name('save.event');
 
-Route::get('/calendar/{first?}/{second?}', [\App\Http\Controllers\ApiController::class, 'get'])->name('get.events');
+Route::middleware('auth_api')->get('/calendar/{first?}/{second?}', [\App\Http\Controllers\ApiController::class, 'get'])->name('get.events');
 
-Route::patch('/calendar/{id?}', function ($id, Request $request){
+Route::middleware('auth_api')->patch('/calendar/{id?}', function ($id, Request $request){
     $update = new \App\Http\Controllers\ApiController();
 
     $update->update($request->toArray(), $id);
 
 })->name('update.event');
 
-Route::delete('/calendar/{id?}', function ($id){
+Route::middleware('auth_api')->delete('/calendar/{id?}', function ($id){
     var_dump($id);
     $delete = new \App\Http\Controllers\ApiController();
     $delete->delete($id);

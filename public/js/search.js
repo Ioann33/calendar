@@ -1,9 +1,9 @@
 let searchForm = document.forms.searchEvent;
 
 function getTime(){
-    let now = new Date()
-    let utc = new Date()
-    utc.setHours(now.getHours()+3)
+    let now = new Date();
+    let utc = new Date();
+    utc.setHours(now.getHours()+3);
     let now3 = utc.toLocaleTimeString();
     return now3;
 }
@@ -18,14 +18,6 @@ function getDate(){
     return year+'-'+month+'-'+day;
 }
 
-
-// async function getAllEvents(){
-//     let first = searchForm.dateStart.value;
-//     let second = searchForm.dateFinish.value;
-//     const res =await fetch(`http://first-calendar.local/api/calendar/?first=${first}&second=${second}`);
-//     const events = await res.json();
-//     eventsToHtml(events);
-// }
 
 async function deleteEvent(id){
 
@@ -44,15 +36,20 @@ async function deleteEvent(id){
             method: 'DELETE',
             headers: {
                 'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer csdajk5hjcbe324jilndlwknj2bsdcs',
             }
         });
         const data = await res;
-        if (data){
+        if (data.status === 405){
+            alert('this action is not authorizated');
+        }
+        if (data.status === 200){
             document.getElementById(`event${id}`).remove();
         }
     }else {
         alert('you cannot delete this events , to start left less thee hours ');
     }
+
 
 
 }
@@ -81,19 +78,21 @@ async function updateEvent(id) {
         const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
             method: 'PATCH',
             headers: {
-                'Content-Type' : 'application/json'
+                'Content-Type' : 'application/json',
+                'Authorization' : 'Bearer csdajk5hjcbe324jilndlwknj2bsdcs',
             },
             body: JSON.stringify(resArr),
         });
 
         const data = await res;
-        if (data){
+
+        if (data.status === 200){
             alert('success');
             searchForm.onsubmit();
-
         }
-
-
+        if (data.status === 405){
+            alert('this action is not authorizated');
+        }
 
     }else{
         alert('you cannot change this events , to start left less thee hours or event completed')
@@ -154,7 +153,7 @@ searchForm.onsubmit = function (e) {
 
 
     xhr.open(method, `http://first-calendar.local/api/calendar/?first=${first}&second=${second}`);
-
+    xhr.setRequestHeader('Authorization', 'Bearer csdajk5hjcbe324jilndlwknj2bsdcs');
     xhr.send();
 
     e.preventDefault();
