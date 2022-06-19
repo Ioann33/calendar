@@ -1,39 +1,11 @@
 let searchForm = document.forms.searchEvent;
 
-function getTime(){
-    let now = new Date();
-    let utc = new Date();
-    utc.setHours(now.getHours()+3);
-    let now3 = utc.toLocaleTimeString();
-    return now3;
-}
-
-function getDate(){
-    let year = new Date().getFullYear();
-    let month = new Date().getMonth()+1;
-    if (month<10){
-        month = '0'+month;
-    }
-    let day = new Date().getDate();
-    return year+'-'+month+'-'+day;
-}
-
-
 async function deleteEvent(id){
 
-    let right = true;
+
 
     let values = document.querySelectorAll(`#event${id} input`);
-    if (getDate() === values[5].value){
-        if (getTime() < values[6].value){
-            right = true;
-        }else {
-            right = false;
-        }
-    }else if (getDate() > values[5].value){
-        right = false;
-    }
-    if (right){
+
         const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
             method: 'DELETE',
             headers: {
@@ -49,37 +21,26 @@ async function deleteEvent(id){
             alert('success delete');
             document.getElementById(`event${id}`).remove();
         }
-    }else {
-        alert('you cannot delete this events , to start left less thee hours or event completed');
+    if (data.status === 400){
+        alert('you cannot change this events , to start left less thee hours or event completed');
     }
+
 
 
 
 }
 
 async function updateEvent(id) {
-    let right = true;
 
     let values = document.querySelectorAll(`#event${id} input`);
-    if (getDate() === values[5].value){
-        if (getTime() < values[6].value){
-            right = true;
-        }else {
-            right = false;
-        }
-    }else if (getDate() > values[5].value){
-        right = false;
-    }
-    if (right){
+
         let resArr = [
             values[0].value,
             values[1].value,
             values[2].value,
             values[3].value,
-            values[4].value
+            values[4].value,
         ];
-
-
         const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
             method: 'PATCH',
             headers: {
@@ -98,10 +59,12 @@ async function updateEvent(id) {
         if (data.status === 405){
             alert('this action is not authorizated');
         }
+        if (data.status === 400){
+            alert('you cannot change this events , to start left less thee hours or event completed');
+        }
 
-    }else{
-        alert('you cannot change this events , to start left less thee hours or event completed')
-    }
+
+
 
 }
 

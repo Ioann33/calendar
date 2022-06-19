@@ -24,11 +24,16 @@ Route::middleware('auth_api')->get('/calendar/{first?}/{second?}', [\App\Http\Co
 Route::middleware('auth_api')->patch('/calendar/{id?}', function ($id, Request $request){
     $update = new \App\Http\Controllers\ApiController();
 
-    $update->update($request->toArray(), $id);
+
+    if(!$update->update($request->toArray(), $id)){
+        return response()->json('Bed Request', 400);
+    }
 
 })->name('update.event');
 
 Route::middleware('auth_api')->delete('/calendar/{id?}', function ($id){
     $delete = new \App\Http\Controllers\ApiController();
-    $delete->delete($id);
+    if(!$delete->delete($id)){
+        return response()->json('Bed Request', 400);
+    }
 });

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Calendar;
 use App\Models\Response;
+use App\Models\Rights;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -73,12 +74,19 @@ class ApiController extends Controller
      */
     public function update(array $values, int $id){
         $event = Calendar::findOrFail($id);
-        $event->date = $values[0];
-        $event->start_at = $values[1];
-        $event->finish_at = $values[2];
-        $event->title = $values[3];
-        $event->description = $values[4];
-        $event->save();
+        $date = $event->date;
+        $time = $event->start_at;
+        if (Rights::checkR($date, $time)){
+            $event->date = $values[0];
+            $event->start_at = $values[1];
+            $event->finish_at = $values[2];
+            $event->title = $values[3];
+            $event->description = $values[4];
+            $event->save();
+            return true;
+        }else{
+            return false;
+        }
 
     }
 
@@ -88,7 +96,13 @@ class ApiController extends Controller
      */
     static public function delete(int $id){
         $event = Calendar::findOrFail($id);
-        $event->delete();
-        echo true;
+        $date = $event->date;
+        $time = $event->start_at;
+        if (Rights::checkR($date, $time)) {
+            $event->delete();
+            return true;
+        }else{
+            return false;
+        }
     }
 }
