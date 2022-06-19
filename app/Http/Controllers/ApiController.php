@@ -44,8 +44,11 @@ class ApiController extends Controller
             $event->user_id = $request->user_id;
             $event->save();
         }else{
-            $events = Calendar::all()->where('date','=', $request->date)->where('start_at','>=',$request->statTime)->where('finish_at','<=',$request->finishTime)->toArray();
-            if ($events){
+            $middle = Calendar::all()->where('date','=', $request->date)->where('start_at','<=',$request->statTime)->where('finish_at','>=',$request->finishTime)->toArray();
+            $start = Calendar::all()->where('date','=', $request->date)->where('start_at','>=',$request->statTime)->where('start_at','<=',$request->finishTime)->toArray();
+            $end = Calendar::all()->where('date','=', $request->date)->where('finish_at','<=',$request->finishTime)->where('finish_at','>=',$request->statTime)->toArray();
+
+            if ($start||$middle||$end){
                 echo 'event on this time already exist';
             }else{
                 $event = new Calendar();
