@@ -30,6 +30,8 @@ async function deleteEvent(id){
         }else {
             right = false;
         }
+    }else if (getDate() > values[5].value){
+        right = false;
     }
     if (right){
         const res = await fetch(`http://first-calendar.local/api/calendar/${id}`,{
@@ -44,10 +46,11 @@ async function deleteEvent(id){
             alert('this action is not authorizated');
         }
         if (data.status === 200){
+            alert('success delete');
             document.getElementById(`event${id}`).remove();
         }
     }else {
-        alert('you cannot delete this events , to start left less thee hours ');
+        alert('you cannot delete this events , to start left less thee hours or event completed');
     }
 
 
@@ -64,6 +67,8 @@ async function updateEvent(id) {
         }else {
             right = false;
         }
+    }else if (getDate() > values[5].value){
+        right = false;
     }
     if (right){
         let resArr = [
